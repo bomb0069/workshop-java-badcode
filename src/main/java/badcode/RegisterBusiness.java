@@ -8,15 +8,9 @@ public class RegisterBusiness {
         Integer speakerId;
         String[] domains = {"gmail.com", "live.com"};
 
-        if (isNullOrEmpty(speaker.getFirstName())) {
-            throw new ArgumentNullException("First name is required.");
-        }
-        if (isNullOrEmpty(speaker.getLastName())) {
-            throw new ArgumentNullException("Last name is required.");
-        }
-        if (isNullOrEmpty(speaker.getEmail())) {
-            throw new ArgumentNullException("Email is required.");
-        }
+        if (isNullOrEmpty(speaker.getFirstName())) throw new ArgumentNullException("First name is required.");
+        if (isNullOrEmpty(speaker.getLastName())) throw new ArgumentNullException("Last name is required.");
+        if (isNullOrEmpty(speaker.getEmail())) throw new ArgumentNullException("Email is required.");
 
         String emailDomain = getEmailDomain(speaker.getEmail()); // Avoid ArrayIndexOutOfBound
         if (Arrays.stream(domains).filter(it -> it.equals(emailDomain)).count() != 1) {
