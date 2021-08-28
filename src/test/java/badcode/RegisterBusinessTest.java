@@ -26,7 +26,6 @@ class RegisterBusinessTest {
         assertEquals(1, actualResult);
     }
 
-    // Test To Pass
     @Test
     @DisplayName("ใส่ Exp ให้ Speaker 2 ปี จะได้ Registration Fee ที่ 250")
     public void casePass02 () {
@@ -45,6 +44,26 @@ class RegisterBusinessTest {
 
         assertEquals(250, speaker.getRegistrationFee());
     }
+
+    @Test
+    @DisplayName("ใส่ Exp ให้ Speaker 1 ปี จะได้ Registration Fee ที่ 500")
+    public void casePass03 () {
+        RegisterBusiness registerBusiness = new RegisterBusiness();
+        Speaker speaker = new Speaker();
+        speaker.setFirstName("Karan");
+        speaker.setLastName("Sivarat");
+        speaker.setEmail("bomb0069@gmail.com");
+        speaker.setExp(1);
+        int actualResult = registerBusiness.register(new SpeakerRepository() {
+            @Override
+            public Integer saveSpeaker(Speaker speaker) {
+                return 1;
+            }
+        }, speaker);
+
+        assertEquals(500, speaker.getRegistrationFee());
+    }
+
     // Test To Fail
     @Test
     @DisplayName("ไม่ทำการกำหนดชื่อ จะเกิด Exception First name is required.")
