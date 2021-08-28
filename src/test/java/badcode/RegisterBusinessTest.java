@@ -8,7 +8,6 @@ import static org.junit.jupiter.api.Assertions.*;
 class RegisterBusinessTest {
 
     // Test To Pass
-
     @Test
     @DisplayName("ใส่ Speaker ที่ถูกต้องจะได้ ID ตาม Repository")
     public void case05 () {
@@ -86,5 +85,21 @@ class RegisterBusinessTest {
         }
     }
 
+
+    @Test
+    @DisplayName("Email doesn't gmail or live จะเกิด SpeakerDoesntMeetRequirementsException -> Speaker doesn't meet our standard rules.")
+    public void case06 () {
+        RegisterBusiness registerBusiness = new RegisterBusiness();
+        try {
+            Speaker speaker = new Speaker();
+            speaker.setFirstName("Karan");
+            speaker.setLastName("Sivarat");
+            speaker.setEmail("bomb0069@scrum123.com");
+            registerBusiness.register(null, speaker);
+            fail();
+        } catch (SpeakerDoesntMeetRequirementsException speakerDoesntMeetRequirementsException) {
+            assertEquals("Speaker doesn't meet our standard rules.",speakerDoesntMeetRequirementsException.getMessage());
+        }
+    }
 
 }
