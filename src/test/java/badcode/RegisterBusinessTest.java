@@ -102,4 +102,20 @@ class RegisterBusinessTest {
         }
     }
 
+
+    @Test
+    @DisplayName("Email ผิด Format จะขึ้น DomainEmailInvalidException")
+    public void case07 () {
+        RegisterBusiness registerBusiness = new RegisterBusiness();
+        try {
+            Speaker speaker = new Speaker();
+            speaker.setFirstName("Karan");
+            speaker.setLastName("Sivarat");
+            speaker.setEmail("bomb0069");
+            registerBusiness.register(null, speaker);
+            fail();
+        } catch (DomainEmailInvalidException domainEmailInvalidException) {
+        }
+    }
+
 }
