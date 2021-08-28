@@ -36,4 +36,20 @@ class RegisterBusinessTest {
         }
     }
 
+
+    @Test
+    @DisplayName("ไม่ทำการกำหนดอีเมลล์ จะเกิด Exception Email is required.")
+    public void case03 () {
+        RegisterBusiness registerBusiness = new RegisterBusiness();
+        try {
+            Speaker speaker = new Speaker();
+            speaker.setFirstName("Karan");
+            speaker.setLastName("Sivarat");
+            registerBusiness.register(null, speaker);
+            fail();
+        } catch (ArgumentNullException argumentNullException) {
+            assertEquals("Email is required.",argumentNullException.getMessage());
+        }
+    }
+
 }
