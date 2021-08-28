@@ -18,7 +18,7 @@ class RegisterBusinessTest {
             registerBusiness.register(null, new Speaker());
             fail();
         } catch (ArgumentNullException argumentNullException) {
-
+            assertEquals("First name is required.",argumentNullException.getMessage());
         }
     }
 
