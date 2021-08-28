@@ -9,6 +9,24 @@ class RegisterBusinessTest {
 
     // Test To Pass
 
+    @Test
+    @DisplayName("ใส่ Speaker ที่ถูกต้องจะได้ ID ตาม Repository")
+    public void case05 () {
+        RegisterBusiness registerBusiness = new RegisterBusiness();
+        Speaker speaker = new Speaker();
+        speaker.setFirstName("Karan");
+        speaker.setLastName("Sivarat");
+        speaker.setEmail("bomb0069@gmail.com");
+        int actualResult = registerBusiness.register(new SpeakerRepository() {
+            @Override
+            public Integer saveSpeaker(Speaker speaker) {
+                return 1;
+            }
+        }, speaker);
+
+        assertEquals(1, actualResult);
+    }
+
     // Test To Fail
     @Test
     @DisplayName("ไม่ทำการกำหนดชื่อ จะเกิด Exception First name is required.")
@@ -67,5 +85,6 @@ class RegisterBusinessTest {
             assertEquals("Can't save a speaker.",saveSpeakerException.getMessage());
         }
     }
+
 
 }
