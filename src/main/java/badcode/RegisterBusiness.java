@@ -8,30 +8,34 @@ public class RegisterBusiness {
         Integer speakerId;
         String[] domains = {"gmail.com", "live.com"};
 
-        if (speaker.getFirstName() == null || "".equals(speaker.getFirstName().trim())) {
+        if (isNullOrEmpty(speaker.getFirstName())) {
             throw new ArgumentNullException("First name is required.");
         }
-        if (speaker.getLastName() == null || "".equals(speaker.getLastName().trim())) {
+        if (isNullOrEmpty(speaker.getLastName())) {
             throw new ArgumentNullException("Last name is required.");
         }
-        if (speaker.getEmail() == null || "".equals(speaker.getEmail().trim())) {
+        if (isNullOrEmpty(speaker.getEmail())) {
             throw new ArgumentNullException("Email is required.");
         }
-        // Your Tasks ...
+
         String emailDomain = getEmailDomain(speaker.getEmail()); // Avoid ArrayIndexOutOfBound
-        if (Arrays.stream(domains).filter(it -> it.equals(emailDomain)).count() == 1) {
-            int exp = speaker.getExp();
-            speaker.setRegistrationFee(getFee(exp));
-            try {
-                speakerId = repository.saveSpeaker(speaker);
-            } catch (Exception exception) {
-                throw new SaveSpeakerException("Can't save a speaker.");
-            }
-        } else {
+        if (Arrays.stream(domains).filter(it -> it.equals(emailDomain)).count() != 1) {
             throw new SpeakerDoesntMeetRequirementsException("Speaker doesn't meet our standard rules.");
         }
 
+        int exp = speaker.getExp();
+        speaker.setRegistrationFee(getFee(exp));
+        try {
+            speakerId = repository.saveSpeaker(speaker);
+        } catch (Exception exception) {
+            throw new SaveSpeakerException("Can't save a speaker.");
+        }
+
         return speakerId;
+    }
+
+    private boolean isNullOrEmpty(String value) {
+        return value == null || "".equals(value.trim());
     }
 
     public int getFee(int exp) {
