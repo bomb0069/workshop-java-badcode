@@ -8,13 +8,13 @@ public class RegisterBusiness {
         Integer speakerId;
         String[] domains = {"gmail.com", "live.com"};
 
-        if (speaker.getFirstName() == null || speaker.getFirstName().trim().equals("")) {
+        if (speaker.getFirstName() == null || "".equals(speaker.getFirstName().trim())) {
             throw new ArgumentNullException("First name is required.");
         }
-        if (speaker.getLastName() == null || speaker.getLastName().trim().equals("")) {
+        if (speaker.getLastName() == null || "".equals(speaker.getLastName().trim())) {
             throw new ArgumentNullException("Last name is required.");
         }
-        if (speaker.getEmail() == null || speaker.getEmail().trim().equals("")) {
+        if (speaker.getEmail() == null || "".equals(speaker.getEmail().trim())) {
             throw new ArgumentNullException("Email is required.");
         }
         // Your Tasks ...
