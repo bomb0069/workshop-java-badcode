@@ -16,12 +16,7 @@ class RegisterBusinessTest {
         speaker.setFirstName("Karan");
         speaker.setLastName("Sivarat");
         speaker.setEmail("bomb0069@gmail.com");
-        int actualResult = registerBusiness.register(new SpeakerRepository() {
-            @Override
-            public Integer saveSpeaker(Speaker speaker) {
-                return 1;
-            }
-        }, speaker);
+        int actualResult = registerBusiness.register(new FirstIdSpeakerRepository(), speaker);
 
         assertEquals(1, actualResult);
     }
@@ -35,12 +30,7 @@ class RegisterBusinessTest {
         speaker.setLastName("Sivarat");
         speaker.setEmail("bomb0069@gmail.com");
         speaker.setExp(2);
-        int actualResult = registerBusiness.register(new SpeakerRepository() {
-            @Override
-            public Integer saveSpeaker(Speaker speaker) {
-                return 1;
-            }
-        }, speaker);
+        int actualResult = registerBusiness.register(new FirstIdSpeakerRepository(), speaker);
 
         assertEquals(250, speaker.getRegistrationFee());
     }
@@ -54,12 +44,7 @@ class RegisterBusinessTest {
         speaker.setLastName("Sivarat");
         speaker.setEmail("bomb0069@gmail.com");
         speaker.setExp(1);
-        int actualResult = registerBusiness.register(new SpeakerRepository() {
-            @Override
-            public Integer saveSpeaker(Speaker speaker) {
-                return 1;
-            }
-        }, speaker);
+        int actualResult = registerBusiness.register(new FirstIdSpeakerRepository(), speaker);
 
         assertEquals(500, speaker.getRegistrationFee());
     }
@@ -202,4 +187,11 @@ class RegisterBusinessTest {
             assertEquals("Email is required.",argumentNullException.getMessage());
         }
     }
+}
+
+class FirstIdSpeakerRepository implements SpeakerRepository {
+        @Override
+        public Integer saveSpeaker(Speaker speaker) {
+            return 1;
+        }
 }
