@@ -10,7 +10,7 @@ class RegisterBusinessTest {
     // Test To Pass
     @Test
     @DisplayName("ใส่ Speaker ที่ถูกต้องจะได้ ID ตาม Repository")
-    public void case05 () {
+    public void casePass01 () {
         RegisterBusiness registerBusiness = new RegisterBusiness();
         Speaker speaker = new Speaker();
         speaker.setFirstName("Karan");
@@ -48,7 +48,7 @@ class RegisterBusinessTest {
     // Test To Fail
     @Test
     @DisplayName("ไม่ทำการกำหนดชื่อ จะเกิด Exception First name is required.")
-    public void case01 () {
+    public void caseFail01 () {
         RegisterBusiness registerBusiness = new RegisterBusiness();
         try {
             registerBusiness.register(null, new Speaker());
@@ -60,7 +60,7 @@ class RegisterBusinessTest {
 
     @Test
     @DisplayName("ไม่ทำการกำหนดนามสกุล จะเกิด Exception Last name is required.")
-    public void case02 () {
+    public void caseFail02 () {
         RegisterBusiness registerBusiness = new RegisterBusiness();
         try {
             Speaker speaker = new Speaker();
@@ -75,7 +75,7 @@ class RegisterBusinessTest {
 
     @Test
     @DisplayName("ไม่ทำการกำหนดอีเมลล์ จะเกิด Exception Email is required.")
-    public void case03 () {
+    public void caseFail03 () {
         RegisterBusiness registerBusiness = new RegisterBusiness();
         try {
             Speaker speaker = new Speaker();
@@ -90,7 +90,7 @@ class RegisterBusinessTest {
 
     @Test
     @DisplayName("Repository เป็น Null จะเกิด SaveSpeakerException Can't save a speaker.")
-    public void case04 () {
+    public void caseFail04 () {
         RegisterBusiness registerBusiness = new RegisterBusiness();
         try {
             Speaker speaker = new Speaker();
@@ -107,7 +107,7 @@ class RegisterBusinessTest {
 
     @Test
     @DisplayName("Email doesn't gmail or live จะเกิด SpeakerDoesntMeetRequirementsException -> Speaker doesn't meet our standard rules.")
-    public void case06 () {
+    public void caseFail05 () {
         RegisterBusiness registerBusiness = new RegisterBusiness();
         try {
             Speaker speaker = new Speaker();
@@ -124,7 +124,7 @@ class RegisterBusinessTest {
 
     @Test
     @DisplayName("Email ผิด Format จะขึ้น DomainEmailInvalidException")
-    public void case07 () {
+    public void caseFail06 () {
         RegisterBusiness registerBusiness = new RegisterBusiness();
         try {
             Speaker speaker = new Speaker();
