@@ -137,4 +137,33 @@ class RegisterBusinessTest {
         }
     }
 
+    @Test
+    @DisplayName("ใช่ชื่อเป็นค่าว่าง จะเกิด Exception First name is required.")
+    public void caseFail07 () {
+        RegisterBusiness registerBusiness = new RegisterBusiness();
+        try {
+            Speaker speaker = new Speaker();
+            speaker.setFirstName("");
+            registerBusiness.register(null, speaker);
+            fail();
+        } catch (ArgumentNullException argumentNullException) {
+            assertEquals("First name is required.",argumentNullException.getMessage());
+        }
+    }
+
+
+    @Test
+    @DisplayName("ใช่นามสกุลเป็นค่าว่าง จะเกิด Exception Last name is required.")
+    public void caseFail08 () {
+        RegisterBusiness registerBusiness = new RegisterBusiness();
+        try {
+            Speaker speaker = new Speaker();
+            speaker.setFirstName("Karan");
+            speaker.setLastName("");
+            registerBusiness.register(null, speaker);
+            fail();
+        } catch (ArgumentNullException argumentNullException) {
+            assertEquals("Last name is required.",argumentNullException.getMessage());
+        }
+    }
 }
