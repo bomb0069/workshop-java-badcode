@@ -166,4 +166,21 @@ class RegisterBusinessTest {
             assertEquals("Last name is required.",argumentNullException.getMessage());
         }
     }
+
+
+    @Test
+    @DisplayName("ใส่อีเมลล์เป็นค่าว่าง จะเกิด Exception Email is required.")
+    public void caseFail09 () {
+        RegisterBusiness registerBusiness = new RegisterBusiness();
+        try {
+            Speaker speaker = new Speaker();
+            speaker.setFirstName("Karan");
+            speaker.setLastName("Sivarat");
+            speaker.setEmail("");
+            registerBusiness.register(null, speaker);
+            fail();
+        } catch (ArgumentNullException argumentNullException) {
+            assertEquals("Email is required.",argumentNullException.getMessage());
+        }
+    }
 }
