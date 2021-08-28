@@ -52,4 +52,20 @@ class RegisterBusinessTest {
         }
     }
 
+    @Test
+    @DisplayName("Repository เป็น Null จะเกิด SaveSpeakerException Can't save a speaker.")
+    public void case04 () {
+        RegisterBusiness registerBusiness = new RegisterBusiness();
+        try {
+            Speaker speaker = new Speaker();
+            speaker.setFirstName("Karan");
+            speaker.setLastName("Sivarat");
+            speaker.setEmail("bomb0069@gmail.com");
+            registerBusiness.register(null, speaker);
+            fail();
+        } catch (SaveSpeakerException saveSpeakerException) {
+            assertEquals("Can't save a speaker.",saveSpeakerException.getMessage());
+        }
+    }
+
 }
