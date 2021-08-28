@@ -49,6 +49,20 @@ class RegisterBusinessTest {
         assertEquals(500, speaker.getRegistrationFee());
     }
 
+    @Test
+    @DisplayName("ใส่ Exp ให้ Speaker 5 ปี จะได้ Registration Fee ที่ 100")
+    public void casePass04 () {
+        RegisterBusiness registerBusiness = new RegisterBusiness();
+        Speaker speaker = new Speaker();
+        speaker.setFirstName("Karan");
+        speaker.setLastName("Sivarat");
+        speaker.setEmail("bomb0069@gmail.com");
+        speaker.setExp(5);
+        int actualResult = registerBusiness.register(new FirstIdSpeakerRepository(), speaker);
+
+        assertEquals(100, speaker.getRegistrationFee());
+    }
+
     // Test To Fail
     @Test
     @DisplayName("ไม่ทำการกำหนดชื่อ จะเกิด Exception First name is required.")
