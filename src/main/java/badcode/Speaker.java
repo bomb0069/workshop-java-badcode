@@ -7,7 +7,6 @@ public class Speaker {
     private String lastName;
     private String email;
     private int exp;
-    private int registrationFee;
     private boolean hasBlog;
     private String blogUrl;
     private List<String> certifications;
@@ -44,14 +43,6 @@ public class Speaker {
         this.exp = exp;
     }
 
-    public int getRegistrationFee() {
-        return registrationFee;
-    }
-
-    public void setRegistrationFee(int registrationFee) {
-        this.registrationFee = registrationFee;
-    }
-
     public boolean isHasBlog() {
         return hasBlog;
     }
@@ -74,5 +65,22 @@ public class Speaker {
 
     public void setCertifications(List<String> certifications) {
         this.certifications = certifications;
+    }
+
+    public int getRegistrationFee () {
+        return getFee(getExp());
+    }
+    public int getFee(int exp) {
+        int fee = 0;
+        if (exp <= 1) {
+            fee = 500;
+        } else if (exp <= 3) {
+            fee = 250;
+        } else if (exp <= 5) {
+            fee = 100;
+        } else if (exp <= 9) {
+            fee = 50;
+        }
+        return fee;
     }
 }

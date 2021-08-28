@@ -10,8 +10,6 @@ public class RegisterBusiness {
         validateSpeaker(speaker);
         validateEmail(speaker.getEmail());
 
-        int exp = speaker.getExp();
-        speaker.setRegistrationFee(getFee(exp));
         try {
             speakerId = repository.saveSpeaker(speaker);
         } catch (Exception exception) {
@@ -42,20 +40,6 @@ public class RegisterBusiness {
 
     private boolean isNullOrEmpty(String value) {
         return value == null || "".equals(value.trim());
-    }
-
-    public int getFee(int exp) {
-        int fee = 0;
-        if (exp <= 1) {
-            fee = 500;
-        } else if (exp <= 3) {
-            fee = 250;
-        } else if (exp <= 5) {
-            fee = 100;
-        } else if (exp <= 9) {
-            fee = 50;
-        }
-        return fee;
     }
 
     public String getEmailDomain(String email) {
