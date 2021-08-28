@@ -37,7 +37,7 @@ public class RegisterBusiness {
         return speakerId;
     }
 
-    int getFee(int exp) {
+    public int getFee(int exp) {
         int fee = 0;
         if (exp <= 1) {
             fee = 500;
