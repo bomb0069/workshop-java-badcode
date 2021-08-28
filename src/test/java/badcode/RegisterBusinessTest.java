@@ -63,6 +63,62 @@ class RegisterBusinessTest {
         assertEquals(100, speaker.getRegistrationFee());
     }
 
+    @Test
+    @DisplayName("ใส่ Exp ให้ Speaker 9 ปี จะได้ Registration Fee ที่ 50")
+    public void casePass05 () {
+        RegisterBusiness registerBusiness = new RegisterBusiness();
+        Speaker speaker = new Speaker();
+        speaker.setFirstName("Karan");
+        speaker.setLastName("Sivarat");
+        speaker.setEmail("bomb0069@gmail.com");
+        speaker.setExp(9);
+        int actualResult = registerBusiness.register(new FirstIdSpeakerRepository(), speaker);
+
+        assertEquals(50, speaker.getRegistrationFee());
+    }
+
+    @Test
+    @DisplayName("ใส่ Exp ให้ Speaker 3 ปี จะได้ Registration Fee ที่ 250")
+    public void casePass06 () {
+        RegisterBusiness registerBusiness = new RegisterBusiness();
+        Speaker speaker = new Speaker();
+        speaker.setFirstName("Karan");
+        speaker.setLastName("Sivarat");
+        speaker.setEmail("bomb0069@gmail.com");
+        speaker.setExp(3);
+        int actualResult = registerBusiness.register(new FirstIdSpeakerRepository(), speaker);
+
+        assertEquals(250, speaker.getRegistrationFee());
+    }
+
+    @Test
+    @DisplayName("ใส่ Exp ให้ Speaker 4 ปี จะได้ Registration Fee ที่ 100")
+    public void casePass07 () {
+        RegisterBusiness registerBusiness = new RegisterBusiness();
+        Speaker speaker = new Speaker();
+        speaker.setFirstName("Karan");
+        speaker.setLastName("Sivarat");
+        speaker.setEmail("bomb0069@gmail.com");
+        speaker.setExp(4);
+        int actualResult = registerBusiness.register(new FirstIdSpeakerRepository(), speaker);
+
+        assertEquals(100, speaker.getRegistrationFee());
+    }
+
+
+    @Test
+    @DisplayName("ใส่ Exp ให้ Speaker 8 ปี จะได้ Registration Fee ที่ 50")
+    public void casePass08 () {
+        RegisterBusiness registerBusiness = new RegisterBusiness();
+        Speaker speaker = new Speaker();
+        speaker.setFirstName("Karan");
+        speaker.setLastName("Sivarat");
+        speaker.setEmail("bomb0069@gmail.com");
+        speaker.setExp(8);
+        int actualResult = registerBusiness.register(new FirstIdSpeakerRepository(), speaker);
+
+        assertEquals(50, speaker.getRegistrationFee());
+    }
     // Test To Fail
     @Test
     @DisplayName("ไม่ทำการกำหนดชื่อ จะเกิด Exception First name is required.")
